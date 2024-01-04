@@ -29,7 +29,7 @@ class MiscElements:
         self.drop_down_for_input.bind("<<ComboboxSelected>>", language.change_lang)
 
     def drop_down_result_bind(self, language) -> None:
-        self.drop_down_for_result.current(1)
+        self.drop_down_for_result.current(0)
         self.drop_down_for_result.bind("<<ComboboxSelected>>", language.change_lang_result)
 
     @staticmethod

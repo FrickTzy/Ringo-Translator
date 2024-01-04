@@ -5,7 +5,7 @@ from Interface.Backend import ElementChange, Language
 class Elements:
     def __init__(self, main_window, backend):
         self.frames = FrameElements(main_window)
-        self.language = Language(self)
+        self.language = Language(self, options=backend.options)
         self.misc = MiscElements(self, main_window, self.language)
         self.entries = EntryElements(main_window, self.language)
         self.element_change = ElementChange(main_window, self, backend)
