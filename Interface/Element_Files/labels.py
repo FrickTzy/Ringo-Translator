@@ -30,6 +30,6 @@ class LabelElements:
                      height=5,
                      borderwidth=3,
                      relief="solid",
-                     text="Translating",
+                     text="Waiting for input...",
                      fg="#757575",
                      )

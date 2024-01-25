@@ -70,14 +70,13 @@ class ElementChange:
         self.elements.buttons.mic_button.config(image=self.backend.logos.mic_on_image)
         self.elements.labels.result_label.config(text="Listening...", fg="#757575")
         self.window.update()
-        self.change_input(
-            self.backend.voice_activation.voice(language=self.elements.language.convert_lang.get(self.elements.
-                                                                                                 variables.lang.
-                                                                                                 get(), "")))
+        self.__voice_act()
+
+    def __voice_act(self):
+        self.elements.voice_activation.voice(language=self.elements.variables.lang.get())
 
     def change_input(self, result):
         self.elements.entries.input_entry.delete(0, END)
         self.elements.entries.input_entry.insert(END, result)
         self.elements.language.translate_result()
         self.elements.buttons.mic_button.config(image=self.backend.logos.mic_image)
-        self.backend.voice_activation.word = ""

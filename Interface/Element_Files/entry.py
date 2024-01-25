@@ -1,10 +1,14 @@
-from tkinter import Entry
+from tkinter import Entry, END
 
 
 class EntryElements:
     def __init__(self, window, language):
         self.input_entry = self.make_input_entry(window)
         self.bind_entry(language)
+
+    def set_text(self, text):
+        self.input_entry.delete(0, END)
+        self.input_entry.insert(0, text)
 
     @staticmethod
     def make_input_entry(window) -> Entry:

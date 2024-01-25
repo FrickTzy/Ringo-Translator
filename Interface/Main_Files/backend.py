@@ -4,7 +4,6 @@ from Interface.Element_Files import Logos
 
 class Backend:
     def __init__(self):
-        self.voice_activation = VoiceActivation()
         self.logos = Logos()
         self.music = Music()
         self.options = Options(use_api=True)

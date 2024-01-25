@@ -4,14 +4,14 @@ import pykakasi
 
 class ApiTranslator:
     __convert_lang = {
-        "": "autodetect",
+        "": "en",
         "English": "en",
         "Filipino": "ph",
         "Japanese": "ja"
     }
 
     def __init__(self):
-        self.__translator = Translator(from_lang="en", to_lang="ja")
+        self.__translator = Translator(from_lang="ja", to_lang="en")
         self.__romaji_convertor = pykakasi.Kakasi()
 
     def translate(self, sentence: str):
@@ -25,8 +25,7 @@ class ApiTranslator:
     def change_language(self, to_lang, from_lang=""):
         from_lang = self.__convert_lang.get(from_lang, "")
         to_lang = self.__convert_lang.get(to_lang, "")
-        self.__translator.from_lang = from_lang
-        self.__translator.to_lang = to_lang
+        self.__translator = Translator(from_lang=from_lang, to_lang=to_lang)
 
     @staticmethod
     def __get_romaji_sentence(romaji):
@@ -36,3 +35,8 @@ class ApiTranslator:
                 continue
             complete_romaji += f"{item.get('hepburn')} "
         return complete_romaji
+
+
+if __name__ == "__main__":
+    translator = ApiTranslator()
+    print(translator.translate(sentence="watashi wa ringo wo tabeta"))
