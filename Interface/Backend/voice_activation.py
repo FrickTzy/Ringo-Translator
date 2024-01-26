@@ -7,6 +7,7 @@ class VoiceActivation:
     language_converter = {
         "Japanese": "ja-JP",
         "English": "en-US",
+        "Filipino": "fil-PH",
     }
 
     def __init__(self, result_label, translator, mic_logo, mic_button, entry):

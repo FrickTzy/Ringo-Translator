@@ -4,9 +4,9 @@ import pykakasi
 
 class ApiTranslator:
     __convert_lang = {
-        "": "en",
-        "English": "en",
-        "Filipino": "ph",
+        "": "en-US",
+        "English": "en-US",
+        "Filipino": "fil-PH",
         "Japanese": "ja"
     }
 
@@ -39,4 +39,5 @@ class ApiTranslator:
 
 if __name__ == "__main__":
     translator = ApiTranslator()
-    print(translator.translate(sentence="watashi wa ringo wo tabeta"))
+    translator.change_language(to_lang="Japanese", from_lang="Filipino")
+    print(translator.translate(sentence="Kumain ako ng mansanas"))
