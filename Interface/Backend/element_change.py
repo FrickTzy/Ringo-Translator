@@ -1,4 +1,6 @@
 from tkinter import END
+from threading import Thread
+from time import sleep
 
 
 class ElementChange:
@@ -71,6 +73,26 @@ class ElementChange:
         self.elements.labels.result_label.config(text="Listening...", fg="#757575")
         self.window.update()
         self.__voice_act()
+
+    def pronunciation(self):
+        forbidden_output = ("Waiting for input...", "Translating...", "Translating", "Unknown Word!",
+                            "Same Language! Please Try Again", "Couldn't understand it", "Couldn't connect to Google",
+                            "The input does not match the language! Please Try Again")
+        if (text_output := self.elements.labels.result_label.cget("text")) in forbidden_output or not text_output:
+            return
+        text_output = text_output.splitlines()[0]
+        if "/" in text_output:
+            text_output = text_output.split("/")[0]
+        self.elements.buttons.pronunciation_button.config(image=self.backend.logos.pronunciation_on_image)
+        Thread(target=self.__pronunciation_executions,
+               kwargs={"text_output": text_output}).start()
+
+    def __pronunciation_executions(self, text_output):
+        self.backend.voice_pronunciation.set_language(language=self.elements.variables.lang_result.get())
+        self.elements.buttons.pronunciation_button.config(image=self.backend.logos.pronunciation_on_image)
+        self.backend.voice_pronunciation.play_pronunciation(japanese_character=text_output)
+        sleep(2)
+        self.elements.buttons.pronunciation_button.config(image=self.backend.logos.pronunciation_off_image)
 
     def __voice_act(self):
         self.elements.voice_activation.voice(language=self.elements.variables.lang.get())

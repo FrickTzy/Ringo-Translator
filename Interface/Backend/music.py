@@ -5,11 +5,15 @@ import os
 
 
 class SongChecker:
-    __PATH = "C:/Users/Admiin/PycharmProjects/Ringo-chan's codes/Stuff/Ringo_Translator/Interface/Background Music"
+    __SONG_FOLDER_PATH = "/Background Music"
 
     @classmethod
     def get_all_songs(cls):
-        return glob("*.mp3", root_dir=cls.__PATH)
+        return glob("*.mp3", root_dir=cls.__get_path())
+
+    @classmethod
+    def __get_path(cls) -> str:
+        return f"{os.getcwd()}{cls.__SONG_FOLDER_PATH}"
 
 
 class Music:

@@ -9,6 +9,7 @@ class ButtonElements:
         self.prev_button = self.make_prev_button(window, element, backend)
         self.volume_button = self.make_volume_button(element, backend)
         self.mic_button = self.make_voice_act_button(window, backend, element)
+        self.pronunciation_button = self.make_pronunciation_button(window, backend, element)
 
     def place_buttons(self) -> None:
         self.next_button.place(x=99, y=22)
@@ -18,6 +19,7 @@ class ButtonElements:
         self.translate_button.place(x=744, y=290)
         self.translate_button.place(x=744, y=290)
         self.mic_button.place(x=190, y=245)
+        self.pronunciation_button.place(x=190, y=395)
 
     @staticmethod
     def make_translate_button(window, element) -> Button:
@@ -80,6 +82,15 @@ class ButtonElements:
         return Button(window,
                       image=backend.logos.mic_image,
                       command=elements.element_change.voice_activate,
+                      bg="#6f5ee0",
+                      bd=0,
+                      activebackground="#6f5ee0", )
+
+    @staticmethod
+    def make_pronunciation_button(window, backend, elements) -> Button:
+        return Button(window,
+                      image=backend.logos.pronunciation_off_image,
+                      command=elements.element_change.pronunciation,
                       bg="#6f5ee0",
                       bd=0,
                       activebackground="#6f5ee0", )

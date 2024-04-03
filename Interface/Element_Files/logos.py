@@ -11,3 +11,5 @@ class Logos:
         self.volume_image = PhotoImage(file="Images\\Volume.png")
         self.mic_image = PhotoImage(file="Images\\Mic.png")
         self.mic_on_image = PhotoImage(file="Images\\Mic_on.png")
+        self.pronunciation_off_image = PhotoImage(file="Images\\PronunciationOff.png")
+        self.pronunciation_on_image = PhotoImage(file="Images\\PronunciationOn.png")

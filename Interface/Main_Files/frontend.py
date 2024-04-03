@@ -23,3 +23,4 @@ class Elements:
         self.buttons.place_buttons()
         self.entries.place_entry()
         self.misc.place_misc()
+

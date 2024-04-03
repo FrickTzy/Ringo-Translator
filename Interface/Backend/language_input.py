@@ -2,7 +2,7 @@ from threading import Thread
 from Translators.translator import Translate
 from Translators.Others.errors import SameLanguageError, UnknownWordError, \
     LanguageNotMatching
-from .api_translate import ApiTranslator
+from Interface.Backend.API_Translate.api_translate import ApiTranslator
 
 
 class Language:

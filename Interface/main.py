@@ -2,20 +2,20 @@ from Main_Files import Backend, Elements, Window
 
 
 class Main(Window):
-    height = 600
-    width = 1000
+    __HEIGHT = 600
+    __WIDTH = 1000
 
     def __init__(self):
-        super().__init__("Ringo Translator", self.width, self.height)
-        self.backend = Backend()
-        self.elements = Elements(self.window, self.backend)
+        super().__init__("Ringo Translator", self.__WIDTH, self.__HEIGHT)
+        self.__backend = Backend(self.window)
+        self.__elements = Elements(self.window, self.__backend)
 
-    def background_executions(self):
-        self.elements.element_change.shortcuts()
+    def __background_executions(self):
+        self.__elements.element_change.shortcuts()
 
     def run(self):
-        self.elements.place_elements()
-        self.background_executions()
+        self.__elements.place_elements()
+        self.__background_executions()
         self.window.mainloop()
 
 
