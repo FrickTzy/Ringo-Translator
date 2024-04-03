@@ -3,12 +3,12 @@ from Interface.Backend import ElementChange, Language, VoiceActivation
 
 
 class Elements:
-    def __init__(self, main_window, backend):
+    def __init__(self, main_window, backend, sleep_manager):
         self.frames = FrameElements(main_window)
         self.language = Language(self, options=backend.options, mic_image=backend.logos.mic_image)
         self.misc = MiscElements(self, main_window, self.language)
         self.entries = EntryElements(main_window, self.language)
-        self.element_change = ElementChange(main_window, self, backend)
+        self.element_change = ElementChange(main_window, self, backend, sleep_manager)
         self.variables = Variables(backend.music, self.misc)
         self.buttons = ButtonElements(self, main_window, backend)
         self.labels = LabelElements(self, main_window, backend)

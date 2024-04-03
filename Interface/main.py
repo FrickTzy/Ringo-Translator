@@ -1,4 +1,4 @@
-from Main_Files import Backend, Elements, Window
+from Main_Files import Backend, Elements, Window, PronunciationSleepManager
 
 
 class Main(Window):
@@ -7,8 +7,9 @@ class Main(Window):
 
     def __init__(self):
         super().__init__("Ringo Translator", self.__WIDTH, self.__HEIGHT)
-        self.__backend = Backend(self.window)
-        self.__elements = Elements(self.window, self.__backend)
+        self.__pronunciation_sleep_manager = PronunciationSleepManager()
+        self.__backend = Backend(self.window, self.__pronunciation_sleep_manager)
+        self.__elements = Elements(self.window, self.__backend, self.__pronunciation_sleep_manager)
 
     def __background_executions(self):
         self.__elements.element_change.shortcuts()

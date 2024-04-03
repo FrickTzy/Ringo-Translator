@@ -8,10 +8,11 @@ class ElementChange:
     vol_repeat: str
     scale_on: bool = False
 
-    def __init__(self, window, elements, backend):
+    def __init__(self, window, elements, backend, sleep_manager):
         self.window = window
         self.elements = elements
         self.backend = backend
+        self.__sleep_manager = sleep_manager
 
     def change_song_name(self, var: bool = False):
         if var:
@@ -91,7 +92,7 @@ class ElementChange:
         self.backend.voice_pronunciation.set_language(language=self.elements.variables.lang_result.get())
         self.elements.buttons.pronunciation_button.config(image=self.backend.logos.pronunciation_on_image)
         self.backend.voice_pronunciation.play_pronunciation(japanese_character=text_output)
-        sleep(2)
+        sleep(self.__sleep_manager.delay)
         self.elements.buttons.pronunciation_button.config(image=self.backend.logos.pronunciation_off_image)
 
     def __voice_act(self):

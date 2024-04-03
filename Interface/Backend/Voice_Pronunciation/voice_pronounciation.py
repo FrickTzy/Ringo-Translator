@@ -9,9 +9,10 @@ class VoicePronunciation:
     __FOLDER_PATH = FOLDER_PATH
     __VOLUME = 1
 
-    def __init__(self):
+    def __init__(self, sleep_manager):
         self.__pronunciation_fetcher = PronunciationFetcher()
         self.__fetched_pronunciation_sounds = {}
+        self.__sleep_manager = sleep_manager
 
     def play_pronunciation(self, japanese_character):
         directory_path = f"{self.__FOLDER_PATH}{japanese_character}.mp3"
@@ -30,7 +31,9 @@ class VoicePronunciation:
     def __play_sound(self, japanese_character):
         mixer.Channel(2).set_volume(self.__VOLUME)
         mixer.Channel(2).stop()
-        mixer.Channel(2).play(self.__fetched_pronunciation_sounds[japanese_character])
+        fetched_sound = self.__fetched_pronunciation_sounds[japanese_character]
+        self.__sleep_manager.delay = fetched_sound.get_length()
+        mixer.Channel(2).play(fetched_sound)
 
     def clear_cache(self):
         self.__pronunciation_fetcher.clear_cache()
